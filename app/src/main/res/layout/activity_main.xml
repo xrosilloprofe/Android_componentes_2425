@@ -111,11 +111,11 @@
         android:id="@+id/salidaCheckBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:background="#F2ECB6"
         android:gravity="center"
         android:text="Checkbox desactivado"
         android:textColor="#E91E63"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/salida"
         app:layout_constraintStart_toStartOf="@+id/salida"
         app:layout_constraintTop_toBottomOf="@+id/salida" />
