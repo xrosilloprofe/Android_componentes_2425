@@ -94,6 +94,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="8dp"
         android:background="#9C27B0"
         android:backgroundTint="#DAC7FA"
@@ -102,7 +103,6 @@
         android:textColor="#4CAF50"
         android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/apellido" />
@@ -111,12 +111,31 @@
         android:id="@+id/salidaCheckBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:background="#F2ECB6"
         android:gravity="center"
         android:text="Checkbox desactivado"
         android:textColor="#E91E63"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/salida"
         app:layout_constraintStart_toStartOf="@+id/salida"
         app:layout_constraintTop_toBottomOf="@+id/salida" />
+
+    <Button
+        android:id="@+id/salirButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="Salir"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/salidaCheckBox" />
+
+    <Button
+        android:id="@+id/acercaDeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="Acerca De"
+        app:layout_constraintEnd_toStartOf="@+id/salirButton"
+        app:layout_constraintTop_toTopOf="@+id/salirButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

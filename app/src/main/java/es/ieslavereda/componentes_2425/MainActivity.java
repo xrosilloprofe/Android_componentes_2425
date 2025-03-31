@@ -1,6 +1,7 @@
 package es.ieslavereda.componentes_2425;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private RadioGroup radioGroup;
     private Spinner spinner;
     private EditText nombre, apellidos;
-    private Button anyadir;
+    private Button anyadir, salirButton, acercaDeButton;
     private List<Usuario> usuarios;
 
 
@@ -57,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
         apellidos = findViewById(R.id.apellido);
         spinner = findViewById(R.id.spinner);
         anyadir = findViewById(R.id.anyadir);
+        acercaDeButton = findViewById(R.id.acercaDeButton);
+        salirButton = findViewById(R.id.salirButton);
 
         miCheckBox.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,6 +124,19 @@ public class MainActivity extends AppCompatActivity {
                 apellidos.setText("");
                 miAdaptador.notifyDataSetChanged();
             }
+        });
+
+        salirButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        acercaDeButton.setOnClickListener(view -> {
+            //SIN DATOS DE REGRESO
+            Intent intent = new Intent(this, AcercaDeActivity.class);
+            startActivity(intent);
         });
 
     }
