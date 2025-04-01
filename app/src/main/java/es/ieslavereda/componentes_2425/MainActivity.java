@@ -12,8 +12,11 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -25,6 +28,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import es.ieslavereda.componentes_2425.model.Profesion;
 import es.ieslavereda.componentes_2425.model.Usuario;
 
 public class MainActivity extends AppCompatActivity {
@@ -93,8 +97,8 @@ public class MainActivity extends AppCompatActivity {
 
         if(savedInstanceState==null){
             usuarios = new ArrayList<>();
-            usuarios.add(new Usuario("Joaquin","Alonso Saiz"));
-            usuarios.add(new Usuario("Xavier","Rosillo Guerrero"));
+            usuarios.add(new Usuario("Joaquin","Alonso Saiz", Profesion.FULL));
+            usuarios.add(new Usuario("Xavier","Rosillo Guerrero", Profesion.BACK));
         } else {
             usuarios = (List<Usuario>) savedInstanceState.getSerializable("usuario");
         }
@@ -115,14 +119,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        ActivityResultLauncher<Intent> activityResult =
+                registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                        result -> {
+
+                        });
+
         anyadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                usuarios.add(new Usuario(nombre.getText().toString(),
-                        apellidos.getText().toString()));
-                nombre.setText("");
-                apellidos.setText("");
-                miAdaptador.notifyDataSetChanged();
+//                usuarios.add(new Usuario(nombre.getText().toString(),
+//                        apellidos.getText().toString()));
+//                nombre.setText("");
+//                apellidos.setText("");
+//                miAdaptador.notifyDataSetChanged();
+            if(nombre.getText().toString().equals("") ||
+                    apellidos.getText().toString().equals(""))
+                Toast.makeText(context,"Algún campo vacío",
+                        Toast.LENGTH_SHORT).show();
+            else {
+                Intent intent = new Intent(context, ProfesionActivity.class);
+                intent.putExtra("nombre",nombre.getText().toString());
+                intent.putExtra("apellido",apellidos.getText().toString());
+                //lanzar la pantalla/actividad
+                //necesito un objeto ActivityResult
+                activityResult.launch(intent);
+            }
+
             }
         });
 

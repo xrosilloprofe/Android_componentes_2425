@@ -17,7 +17,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -25,6 +24,7 @@
             android:label="Acerca de..."
             android:theme="@style/Theme.AppCompat.Light.Dialog">
         </activity>
+        <activity android:name=".ProfesionActivity"></activity>
     </application>
 
 </manifest>
