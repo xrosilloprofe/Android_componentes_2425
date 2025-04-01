@@ -1,5 +1,6 @@
 package es.ieslavereda.componentes_2425;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -122,17 +123,25 @@ public class MainActivity extends AppCompatActivity {
         ActivityResultLauncher<Intent> activityResult =
                 registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                         result -> {
-
+                            if(result.getResultCode()== Activity.RESULT_CANCELED){
+                                Toast.makeText(this,"Alta cancelada",Toast.LENGTH_SHORT).show();
+                            } else if (result.getResultCode()==Activity.RESULT_OK) {
+                                Intent datos = result.getData();
+                                Bundle extras = datos.getExtras();
+                                Profesion profesion = (Profesion) extras.getSerializable("profesion");
+                                usuarios.add(new Usuario(nombre.getText().toString(),
+                                    apellidos.getText().toString(),profesion));
+                                miAdaptador.notifyDataSetChanged();
+                            } else {
+                                //esto no puede pasar
+                            }
+                            nombre.setText("");
+                            apellidos.setText("");
                         });
 
         anyadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                usuarios.add(new Usuario(nombre.getText().toString(),
-//                        apellidos.getText().toString()));
-//                nombre.setText("");
-//                apellidos.setText("");
-//                miAdaptador.notifyDataSetChanged();
             if(nombre.getText().toString().equals("") ||
                     apellidos.getText().toString().equals(""))
                 Toast.makeText(context,"Algún campo vacío",

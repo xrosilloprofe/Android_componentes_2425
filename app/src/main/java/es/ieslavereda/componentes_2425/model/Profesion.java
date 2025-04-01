@@ -12,4 +12,9 @@ public enum Profesion {
     public String getProfesion() {
         return profesion;
     }
+
+    @Override
+    public String toString(){
+        return getProfesion();
+    }
 }
