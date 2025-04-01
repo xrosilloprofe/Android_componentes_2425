@@ -6,10 +6,12 @@ import java.io.Serializable;
 public class Usuario implements Serializable {
     private String nombre;
     private String apellido;
+    private Profesion profesion;
 
-    public Usuario(String nombre, String apellido) {
+    public Usuario(String nombre, String apellido, Profesion profesion) {
         this.nombre = nombre;
         this.apellido = apellido;
+        this.profesion = profesion;
     }
 
     public String getNombre() {
@@ -19,6 +21,8 @@ public class Usuario implements Serializable {
     public String getApellido() {
         return apellido;
     }
+
+    public Profesion getProfesion() {return profesion;}
 
     @Override
     public String toString(){
